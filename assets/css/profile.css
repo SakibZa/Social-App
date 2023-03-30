@@ -1,0 +1,48 @@
+body {
+  background-color: blueviolet;
+}
+
+/*# sourceMappingURL=profile.css.map */
+#one{
+
+
+    margin-left: 87%;
+    margin-top: -4%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+#container
+{
+  border:1px solid black;
+  background-color: brown;
+}
+#yes
+{
+  /* text-decoration: none;
+  width:100px;
+  height:50px;
+   background-color:white;
+   border:1px solid black;
+   border-radius: 5px; */
+   
+
+   text-decoration: none;
+   /* width: 100px; */
+   /* height: 50px; */
+   background-color:red;
+   border: 1px solid black;
+   border-radius: 5px;
+   display: inline-block;
+   width: 51%;
+   height: 115%;
+   width: 113%;
+   text-align: center;
+
+
+}
+#name{
+
+
+    font-size: 20px;
+}

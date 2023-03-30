@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="/css/view.css">
+
+<img src="<%=user.avatar%>" alt="<%=user.name%>" width="100">
+
+<div>
+
+    <% if(user.id==uu.id) {%>
+           <!-- Jab is form per click kra jayega to is action ko handle krne ke liye ik route hona 
+        chayehe isko ham name update krne ke liye bna rhe hai -->
+        <!-- ham form me enctype use kr rhe hai. ye btata hai ki user text ke alaba files bhi send kr sakta hai -->
+            <form action="/user/update/<%=uu.id%>" enctype="multipart/form-data" method="post" >
+
+                <input type="text" name="name" value="<%=uu.name%>">
+                <input type="email" name="email" value="<%=uu.email%>">
+                  
+                <!-- ye ham photo upload krbane ke liye kr rhe hai  -->
+                <input type="file" name="avatar" placeholder="Profile Picture ">
+
+                <button type="submit">Update</button>
+                </form>
+
+        <%}else{%>
+            
+            <%=uu.name%>
+            <br>
+            <%=uu.email%>
+
+            <%}%>
+
+
+</div>

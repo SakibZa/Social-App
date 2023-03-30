@@ -1,0 +1,152 @@
+
+
+    <link href="/css/profile.css" rel="stylesheet" type="text/css">
+
+<body>
+
+     <!-- <%if(flash.success){%>
+       
+      <h5><%=flash.success%></h5>
+        
+      <%}%> 
+   
+       agr noty use hua hai to flash message script tag me neeche jakr likha jayega 
+   -->
+    <div id="container">
+    <h1>Social App || 
+
+      <img src="<%=user.avatar%>" alt="<%=user.name%>" width="100">
+
+    </h1>
+     <%if(locals.user){%>
+      <div id="one"> 
+    <p><a href="/user/signout" id="yes">sign_out</a></p>
+ 
+
+    <p id="name"> <%=user.name%></p>
+    </div>
+ 
+</div>
+     <%}else {%>
+
+        <a href="/user/signin">sign_in</a>
+
+        <%}%>
+
+
+        <form action="/post/create" method="post"  enctype="multipart/form-data">
+
+            <textarea id="content" placeholder="post..." name="post"></textarea>
+            <input type="file" name="PostAvatar" placeholder="PostImage">
+            <button type="submit">Post</button>
+        </form>
+
+
+        <div>
+           <ul>
+
+            <%for(post of posts){%>
+
+                   <li>
+
+                   <p>
+
+                     <%if(post.user.id==locals.user.id){%>
+
+   
+
+                        <% if(post.postAvatar!=' '&&post.postAvatar){%>
+                           <img src="<%=post.postAvatar%>" alt="<%=post.content%>" width="100">
+       
+                           <%}%>
+
+                            <br>
+                  
+
+                     <%}%>
+                     <%=post.content%>
+                  
+                  
+                  </p>
+                  <a href="/post/destroy/<%=post.id%>">X</a>
+                   <p><%=post.user.name%></p>
+
+                    <!-- jaise hi mai isper click kronga to yha se /post/destroy/6524655665 jayega jo route handle kreaga iske bad ki comment maine routes ke destroy me likhi hai  -->
+                    
+
+                     
+                   <form action="/comment/create" method="post">
+
+
+                    <input type="text" name="comment" placeholder="Add a comment....">
+                    <input type="hidden" name="post" value="<%=post.id%>">
+                    <button type="submit">Comment</button>
+
+                   </form>
+
+
+                   <div class="post-comments-list">
+
+                     <ul id="post-comments-<%=post._id%>">
+
+                      <%for(comment of post.comments){%>
+                      
+                       
+
+                         <p> 
+                           <%if(comment.user.id==locals.user.id){%>
+                              <!-- jaise hi mai isper click kronga to yha se /post/destroy/6524655665 jayega jo route handle kreaga iske bad ki comment maine routes ke destroy me likhi hai  -->
+                                <a href="/comment/destroy/<%=comment.id%>">X</a>
+           
+                                <%}%>
+                           
+                           
+                           
+                           
+                           
+                           <%=comment.content%>
+                        
+                           <br>
+
+                           <small>
+
+                              <%=comment.user.name%>
+                           </small>
+                        
+                        </p>
+                        
+
+                         
+                    
+                    
+                    <%}%>
+
+
+                     </ul>
+
+             </div>
+
+                    
+
+                 
+                
+                </li>
+
+                <%}%>
+              
+           </ul>
+        </div>
+        <div>
+
+          <h4>Friends</h4>
+                <!-- Sare user ko fetch kr rhe hai query lga kr  -->
+          <%for(u of all_u){%>
+
+              <!-- Aur har user ko print kr rhe hai aur usme ik link bhi de rhe hai /user/view/<%=u.id%> ham jab bhi user ke name per click krenge to is url per poch jyenge is url ko handle krne ke liye function bnaya hai  -->
+             <a href="/user/view/<%=u.id%>"><%=u.name%></p></a>
+             
+            <%}%>
+
+        </div>
+        <script src="/js/use.js"></script>
+        
